@@ -61,10 +61,7 @@ func IndexHandler(ctx context.Context) http.HandlerFunc {
 			Language:    "en",
 			Head: []Node{
 				StyleEl(Raw(cloakDirectives)),
-				//Script(Src(MustJoin(prefix, "alpinetrap@3.x.x.js")), Defer()),
 				Script(Src("https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"), Defer()),
-				//Script(Src(MustJoin(prefix, "alpinecollapse@3.x.x.js")), Defer()),
-				//Script(Src(MustJoin(prefix, "alpinemorph@3.x.x.js")), Defer()),
 				Script(Src("https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"), Defer()),
 				StyleEl(Raw(mainCSS)),
 				Script(Rawf("const initialInput = %q;\nconst initialOutput = %q;", example, convertedExample)),
@@ -171,7 +168,9 @@ func IndexHandler(ctx context.Context) http.HandlerFunc {
 					Div(
 						ID("footer"),
 						Div(
-							Textf("Tool © %s Ryan Morehart, hosting sponsored by ", year),
+							Textf("Tool © %s Ryan Morehart, ", year),
+							A(Href("https://github.com/traherom/gomponentsconverter"), Text("source on Github")),
+							Text(", hosting sponsored by "),
 							A(Href("https://xylok.io"), Text("Xylok")),
 							Text("."),
 						),
