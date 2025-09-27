@@ -3,12 +3,17 @@ This tool converts from plain HTML to Gomponents (https://github.com/maragudk/go
 
 A hosted version can be found at [https://gomponents.morehart.dev](https://gomponents.morehart.dev).
 
+# Install locally
+  ```
+  go install github.com/traherom/gomponentsconverter/cmd/gomponentsconverter@latest
+  ```
+
 # Server
   ```
-  go run github.com/traherom/gomponentsconverter/cmd -- serve --port=3333
+  gomponentsconverter serve --port=3333
   ```
 
 # CLI usage
   ```
-  echo '<div>ioj</div>' | go run github.com/traherom/gomponentsconverter/cmd -- convert
+  echo '<div>ioj</div>' | gomponentsconverter convert
   ```
