@@ -1,3 +1,14 @@
-In a fit of avoiding actual work, I made this HTML to Gomponents server. It's hosted at  https://gomponents.morehart.dev. Notably, this one seems to handle alpine shorthand bindings and events more reliably. Want me to put in a PR to add a link?
+# About
+This tool converts from plain HTML to Gomponents (https://github.com/maragudk/gomponents), a great Go library for generating static HTML in a more type-safe way than the default `html/templates`. It's usable as both a server (with an HTML or an API, if you so choose) and as a CLI.
 
-It does use net/HTML for a pretty robust HTML parsing experience and I originally built it just to work as a CLI, so it's pretty close to what you were talking about in #232.
+A hosted version can be found at [https://gomponents.morehart.dev](https://gomponents.morehart.dev).
+
+# Server
+  ```
+  go run github.com/traherom/gomponentsconverter/cmd -- serve --port=3333
+  ```
+
+# CLI usage
+  ```
+  echo '<div>ioj</div>' | go run github.com/traherom/gomponentsconverter/cmd -- convert
+  ```
