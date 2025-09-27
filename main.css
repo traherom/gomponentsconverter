@@ -1,0 +1,311 @@
+@layer reset, layout, smallscreen, theme;
+
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-neutral-50: oklch(0.985 0 0);
+  --color-neutral-100: oklch(0.97 0 0);
+  --color-neutral-200: oklch(0.922 0 0);
+  --color-neutral-300: oklch(0.87 0 0);
+  --color-neutral-400: oklch(0.708 0 0);
+  --color-neutral-500: oklch(0.556 0 0);
+  --color-neutral-600: oklch(0.439 0 0);
+  --color-neutral-700: oklch(0.371 0 0);
+  --color-neutral-800: oklch(0.269 0 0);
+  --color-neutral-900: oklch(0.205 0 0);
+  --color-neutral-950: oklch(0.145 0 0);
+  --color-red-50: oklch(0.971 0.013 17.38);
+  --color-red-100: oklch(0.936 0.032 17.717);
+  --color-red-200: oklch(0.885 0.062 18.334);
+  --color-red-300: oklch(0.808 0.114 19.571);
+  --color-red-400: oklch(0.704 0.191 22.216);
+  --color-red-500: oklch(0.637 0.237 25.331);
+  --color-red-600: oklch(0.577 0.245 27.325);
+  --color-red-700: oklch(0.505 0.213 27.518);
+  --color-red-800: oklch(0.444 0.177 26.899);
+  --color-red-900: oklch(0.396 0.141 25.723);
+  --color-red-950: oklch(0.258 0.092 26.042);
+}
+
+@layer reset {
+
+  /* 1. Use a more-intuitive box-sizing model */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+
+  body {
+    /* 3. Add accessible line-height */
+    line-height: 1.5;
+    /* 4. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 5. Improve media defaults */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* 6. Inherit fonts for form controls */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* 7. Avoid text overflows */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+}
+
+@layer layout {
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica", sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  #wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0 1em 0 1em;
+  }
+
+  #header {
+    flex: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  #header h1 {
+    margin-right: 1em;
+  }
+
+  #inout {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #inout>* {
+    flex: 1;
+    width: 0;
+  }
+
+  #outwrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+  }
+
+  #settings {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: .5em;
+  }
+
+  #settings>* {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1em;
+    margin-bottom: .5em;
+  }
+
+  #settings label {
+    margin-right: .5em;
+  }
+
+  #settings input {
+    max-width: 5em;
+    min-width: 1em;
+  }
+
+  #imports {
+    margin-bottom: 1em;
+    cursor: copy;
+  }
+
+  #output {
+    flex: 1;
+    cursor: copy;
+  }
+
+  textarea,
+  input[type=text] {
+    border: 2px solid var(--color-neutral-950);
+    border-radius: 5px;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: .8em;
+  }
+
+  textarea {
+    padding: .5em;
+    overflow: auto;
+    white-space: pre;
+    min-height: 10em;
+  }
+
+  #error {
+    color: var(--color-red-500);
+    font-weight: bolder;
+    margin-bottom: 1em;
+  }
+
+  #copiedNotice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 4em;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  #copiedNotice>* {
+    flex: 0;
+    padding: 1.75em;
+    border-radius: 1em;
+    font-weight: bolder;
+  }
+
+  #footer {
+    padding-bottom: .5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@layer smallscreen {
+  @media (max-width: 500px) {
+    #header {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #inout {
+      flex-direction: column;
+    }
+
+    #inout>* {
+      flex: 0;
+      width: auto;
+      margin: 1em 0 0 0;
+    }
+
+    #imports {
+      display: none;
+    }
+
+    #settings {
+      justify-content: left;
+    }
+
+    #settings>* {
+      margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      margin-right: 0;
+    }
+  }
+}
+
+@layer theme {
+  body {
+    color: var(--color-neutral-800);
+    background-color: var(--color-neutral-200);
+  }
+
+  textarea,
+  input,
+  .faketextarea {
+    color: var(--color-neutral-800);
+    background-color: var(--color-neutral-100);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-color: var(--color-neutral-950);
+  }
+
+  #copiedNotice>* {
+    color: var(--color-neutral-100);
+    background-color: var(--color-black);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: var(--color-neutral-50);
+      background-color: var(--color-neutral-800);
+    }
+
+    a,
+    a:visited {
+      color: var(--color-neutral-50);
+    }
+
+    #input,
+    #output,
+    #imports,
+    textarea,
+    input {
+      color: var(--color-neutral-50);
+      background-color: var(--color-neutral-700);
+    }
+
+    #copiedNotice>* {
+      color: var(--color-neutral-50);
+      background-color: var(--color-neutral-900);
+    }
+  }
+}
